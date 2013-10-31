@@ -203,6 +203,7 @@ develop-eggs/
 .settings
 manage.py
 settings.py
+sqlite
 
 # Installer logs
 pip-log.txt
