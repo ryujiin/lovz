@@ -201,6 +201,8 @@ sdist/
 develop-eggs/
 .installed.cfg
 .settings
+manage.py
+settings.py
 
 # Installer logs
 pip-log.txt
