@@ -10,7 +10,15 @@ class CuentaCliente(admin.ModelAdmin):
 class Materiales_lista(admin.ModelAdmin):
 	list_display=('nombre','precio',)	
 
+class ModelosAdmin(admin.ModelAdmin):
+    filter_vertical = ('materiales',)
+
+class Ventasform(admin.ModelAdmin):
+	list_display= ('cliente','modelo','cantidad','unidada_venta','mis_precios_en_soles','fecha','total_venta')
+	
+
 admin.site.register(Cliente , EnlaceCliente)
 admin.site.register(Cuenta_Cliente, CuentaCliente)
-admin.site.register(Modelos_calzado)
-admin.site.register(Material,Materiales_lista)
+admin.site.register(Modelos_calzado,)
+admin.site.register(Material)
+admin.site.register(Venta,Ventasform)
