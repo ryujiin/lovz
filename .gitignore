@@ -16,6 +16,7 @@ local.properties
 .settings/
 .loadpath
 
+
 # External tool builders
 .externalToolBuilders/
 
@@ -204,6 +205,7 @@ develop-eggs/
 manage.py
 settings.py
 sqlite
+mitienda/migrations/
 
 # Installer logs
 pip-log.txt
