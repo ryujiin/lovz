@@ -3,6 +3,11 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib import auth
 from django.core.context_processors import csrf
 
+
+def inicio(request):
+	t= "base_tienda.html"
+	return render(request, t,{"request":request,})
+
 #Sistema de login en la pagina Usuarios
 def login(request):
 	if request.user.is_authenticated():
@@ -25,6 +30,7 @@ def auth_view(request):
 			return HttpResponseRedirect('/usuario/invalido/')
 	else:
 		return HttpResponseRedirect('/usuario/invalido/')
+
 def perfil(request):
 	t= 'perfil.html'
 	return render_to_response(t,{'full_name':request.user.username})

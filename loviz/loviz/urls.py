@@ -7,7 +7,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^$', 'contab.views.home', name='home'),
+    url(r'^$', 'mitienda.views.inicio', name='Inicio'),
     url(r'^admin/tienda/$', 'mitienda.admin_views.admintienda', name='Administrador'),
     url(r'^admin/tienda/producto/add$', 'mitienda.admin_views.add_producto', name='Agregar Producto'),
     (r'^tienda/', include(shop_urls)),

@@ -6,20 +6,25 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="/../static/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/../static/estilos.css">
     </head>
     <body>
         <header>
-            <div class="titulo">
-                <h1>Tienda Loviz DelCarpio</h1>
-            </div>
+            <div class="logo left"><img src="http://placehold.it/235x100"></div>
+            <div class="carrito rigth"><img src="http://placehold.it/178x70/f2f2f2/000000&text=carrito"></div>
         </header>
-        <section>
-            <div class="titular">
-                <h2></h2>
-            </div>  
-        </section>
-        {% block formu%}{% endblock %}
-        {% block contenido%}{% endblock %}
+        <nav>
+            <ul class="menu">
+                <li>Inicio</li>
+                <li>Pantuflas</li>
+            </ul>
+        </nav>
+        <section></section>
         <footer></footer>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="/../static/bootstrap.min.js"></script>
     </body>
 </html>
+{% block formu%}{% endblock %}
+{% block contenido%}{% endblock %}
+
