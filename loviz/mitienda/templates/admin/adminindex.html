@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html >
+    <head>
+        <meta charset="utf-8">
+        <title>Inicio</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="/../static/bootstrap.min.css">
+    </head>
+    <body>
+        <header>
+            <div class="titulo">
+                <h1>Administrador de tienda</h1>
+            </div>
+        </header>
+        <nav>
+            {% include 'admin/navegacion.html'%}
+        </nav>
+        <section>
+            <div class="titular">
+                <h2></h2>
+            </div>  
+        </section>
+        {% block formu%}{% endblock %}
+        <footer></footer>
+    </body>
+</html>

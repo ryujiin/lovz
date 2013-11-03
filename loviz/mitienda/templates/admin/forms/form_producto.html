@@ -1,0 +1,12 @@
+{% extends 'admin/adminindex.html'%}
+{%block formu%}
+	<section id="contenido">
+	    <form method="post">
+	    <div id="form">
+	        {% csrf_token %}
+		    {{form.as_p}}
+		    <input type="submit">
+		<form>
+		</div>
+	</section>
+{% endblock %}
