@@ -1,0 +1,25 @@
+		<nav>
+            <ul class="menu nav nav-tabs">
+            {% for cat in menu_admin %}
+            	{%if cat.sub_menu %}
+            	<li class="dropdown">
+				    <a class="dropdown-toggle {% if cat.active %} active {% endif %}" data-toggle="dropdown" href="#">
+				      {{cat.name}} <span class="caret"></span>
+				    </a>
+				    <ul class="dropdown-menu">
+				    	<li>
+				    		<a href="{{cat.url}}">Ver Todo</a>
+				    	</li>
+				    	{% for subcat in cat.sub_menu %}
+				    	<li>
+				    		<a href="{{subcat.url}}">{{subcat.name_submenu}}</a>
+				    	</li>
+				    	{% endfor %}
+				    </ul>
+				  </li>
+            	{%else%}
+                <li><a href="{{cat.url}}" {% if cat.active %} active {% endif %}>{{cat.name}}</a></li> 
+                {%endif%} 	
+            {% endfor %}
+            </ul>
+        </nav>

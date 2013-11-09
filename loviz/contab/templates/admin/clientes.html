@@ -1,0 +1,18 @@
+{% extends 'admin/base_admin.html'%}
+{%block contenido%}
+	<table class="table table-striped">
+		<tr>
+			<td><strong>Cliente</strong></td>
+			<td><strong>Direccion</strong></td>
+			<td><strong>RUC</strong></td>
+		</tr>
+		{% for cliente in clientes %}
+		<tr>
+			<td>{{cliente.nombre}}</td>
+			<td>{{cliente.direccion}}</td>
+			<td>{{cliente.ruc}}</td>
+		</tr>
+		{% endfor %}
+	</table>
+
+{% endblock %}

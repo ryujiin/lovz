@@ -11,7 +11,6 @@ urlpatterns = patterns('',
     url(r'^admin/tienda/$', 'mitienda.admin_views.admintienda', name='Administrador'),
     url(r'^admin/tienda/producto/add$', 'mitienda.admin_views.add_producto', name='Agregar Producto'),
     (r'^tienda/', include(shop_urls)),
-    # url(r'^loviz/', include('loviz.foo.urls')),
 
     url(r'^usuario/ingresar/$', 'mitienda.views.login'),
     url(r'^usuario/auth/$', 'mitienda.views.auth_view'),
@@ -21,6 +20,7 @@ urlpatterns = patterns('',
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
+    #url(r'^admin/contab/material/add/$', 'contab.adminviews.add_material', name='Agregar material'),
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
 )

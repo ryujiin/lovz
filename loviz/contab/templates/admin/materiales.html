@@ -1,0 +1,24 @@
+{% extends 'admin/base_admin.html'%}
+{%block contenido%}
+	<div class="row">
+		<div class="col-md-8">
+			<table class="table table-striped">
+				<tr>
+					<td><strong>Nombre</strong></td>
+					<td><strong>Precio x Unidad</strong></td>
+					<td><strong>Tipo</strong></td>
+				</tr>
+				{% for material in materiales %}
+				<tr>
+					<td>{{material.nombre}}</td>
+					<td>{{material.cant_unidad}}</td>
+					<td>veremos</td>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+  		<div class="col-md-4">
+  			
+  		</div>
+	</div>
+{% endblock %}

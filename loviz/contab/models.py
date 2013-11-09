@@ -1,65 +1,59 @@
 from django.db import models
-
 # Create your models here.
-class Cliente(models.Model):
-	nombre = models.CharField(max_length = 100)
-	direccion = models.CharField(max_length = 140)
-	ruc = models.CharField(max_length = 11)
 
-	def __str__(self):
-		return self.nombre
-
-class Cuenta_Cliente(models.Model):
-	cliente = models.ForeignKey(Cliente)
-	deuda = models.IntegerField(default = 0)
-	abono = models.IntegerField(default = 0)
-	total = models.IntegerField(default=0)
-	fecha = models.DateTimeField(auto_now_add=True)
-
+#lista de materiales para manejar Stock
 class Material(models.Model):
-	UNIDADES_DE_MEDIDA = (
-		('M','Metros'),
-		('P','Pies'),
-		('U','Unidad')
-		)
+	TIPO=(('tela','Tela'),('cinta','Cinta'),)
+	UNID=(('metros','Metros'),('millar','millar'),('paquetes','Paquetes'))
+
 	nombre = models.CharField(max_length = 140)
-	cantidad = models.IntegerField(default = 0)
-	unidad = models.CharField(max_length=1, choices=UNIDADES_DE_MEDIDA)
-	precio = models.IntegerField(default = 0)
-	total_soles = models.IntegerField(default=0)
-
-	def __str__(self):
-		return self.nombre
-
-class Modelos_calzado(models.Model):
-	nombre = models.CharField(max_length=140)
-	materiales = models.ForeignKey(Material)
-	costo = models.IntegerField(default=0)
-	
-	def __str__(self):
-		return self.nombre
-
-class Venta(models.Model):
-	UNI_CANT_VENT=(
-		('D','Docena'),
-		('P','Par'),
-		)
-	cliente=models.ForeignKey(Cliente)
-	modelo=models.ForeignKey(Modelos_calzado)
-	cantidad=models.IntegerField(default=0)
-	unidada_venta=models.CharField(max_length=1,choices=UNI_CANT_VENT)
-	precio_unidad=models.IntegerField(default=0)
-	fecha=models.DateField(auto_now_add=False)
+	unidad_compra = models.CharField(max_length=20,choices=UNID)
+	tipo = models.CharField(max_length=20,choices=TIPO)
+	precio = models.DecimalField(max_digits=5, decimal_places=2)
+	timestamp = models.DateTimeField(auto_now_add=True)
 
 	def __unicode__(self):
-		return "%s - %s" % (self.cliente,self.modelo)
+		return self.nombre
+	class Meta:
+		unique_together = (("nombre",),)
+	
 
-	def mis_precios_en_soles(self):
-		return 'S/.%s' % self.precio_unidad
+#lista de Firmes Stock
+class Firme(models.Model):
+	COLOR=(('fucsia','Fucsia'),('azul','Azul'),('negro','Negro'),('lila','Lila'),('celeste','Celeste'),('beige','Beige'),)
+	TALLA=(('28','28'),('30','30'),('32','32'),('34','34'),('36','36'),('38','38'),('40','40'),)
 
-	def total_venta(self):
-		totales_venta = self.cantidad * self.precio_unidad
-		return 'S/.%s' % totales_venta 
+	color=models.CharField(max_length=20,choices=COLOR)
+	talla= models.CharField(max_length=2,choices=TALLA)
 
+	def __unicode__(self):
+		return "%s - %s" % (self.color,self.talla)	
 
+class StockMaterial(models.Model):
+	nombre = models.ForeignKey(Material)
+	cantidad = models.IntegerField(default=0)
+	total_unidades = models.IntegerField(default=0)
+	timestamp = models.DateTimeField(auto_now_add=True)
+	total_soles = models.DecimalField(max_digits=6, decimal_places=2)
+	registro = models.CharField(max_length=30)
 
+	def __unicode__(self):
+		return "%s - %s" % (self.nombre,self.cantidad) 
+
+class StockFirme(models.Model):
+	nombre = models.ForeignKey(Firme)
+	cantidad = models.IntegerField(default=0)
+	total_unidades = models.IntegerField(default=0)
+	timestamp = models.DateTimeField(auto_now_add=True)
+	total_soles = models.DecimalField(max_digits=6, decimal_places=2)
+	registro = models.CharField(max_length=30)
+
+class Compras_Material(models.Model):
+	fecha=models.DateTimeField(auto_now_add=True)
+	compra_materiales = models.ForeignKey(Material)
+	cantidad= models.IntegerField(default=0)
+
+class PedidoFirmes(models.Model):
+	fecha=models.DateTimeField(auto_now_add=True)
+	compra_materiales = models.ForeignKey(Firme)
+	cantidad= models.IntegerField(default=0)
